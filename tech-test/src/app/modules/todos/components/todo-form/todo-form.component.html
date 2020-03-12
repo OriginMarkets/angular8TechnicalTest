@@ -1,0 +1,40 @@
+<form [ngClass]="editMode ? 'edit-todo' : 'add-todo'"
+      [formGroup]="todoForm"
+      (ngSubmit)="onSubmit()">
+  <mat-card-content layout-xs="column">
+    <mat-form-field>
+      <mat-label>To-Do</mat-label>
+      <input class="mat-headline"
+             matInput
+             formControlName="label">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <input matInput
+             formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <input matInput
+             formControlName="category">
+    </mat-form-field>
+  </mat-card-content>
+
+  <ng-container class="actions">
+    <button type="button"
+            (click)="cancel()"
+            *ngIf="editMode"
+            mat-button color="primary">
+      Cancel
+    </button>
+    <button mat-raised-button
+            [disabled]="!todoForm.get('label').value"
+            color="primary">
+      {{submitLabel}}
+    </button>
+
+  </ng-container>
+</form>
+

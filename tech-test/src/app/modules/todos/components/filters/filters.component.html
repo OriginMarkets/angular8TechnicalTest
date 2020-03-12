@@ -1,0 +1,17 @@
+  <span class="mat-h2">Filters: </span>
+  <mat-form-field class="filter">
+    <mat-label>Category</mat-label>
+    <mat-select (valueChange)="selectCategory($event)">
+      <mat-option value="">All Categories</mat-option>
+      <mat-option *ngFor="let category of categories$ | async" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-checkbox class="filter"
+                [checked]="true"
+                (change)="setShowCompleted($event)"
+                color="primary">
+    Show Completed Tasks
+  </mat-checkbox>

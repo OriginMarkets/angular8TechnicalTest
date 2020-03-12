@@ -1,0 +1,29 @@
+<mat-list-item class="list-item" [class.todo-list-item-done]="todoItem?.done">
+  <mat-checkbox matLine
+                [checked]="todoItem?.done"
+                (change)="toggleTodo(todoItem)"
+                color="primary"
+                [class.done]="todoItem?.done">
+    <span class="mat-title">{{todoItem?.label}}</span>
+  </mat-checkbox>
+  <mat-chip-list *ngIf="todoItem?.category" class="category">
+    <mat-chip>{{todoItem?.category}}</mat-chip>
+  </mat-chip-list>
+  <button mat-icon-button aria-label="Remove" (click)="editTodo(todoItem?.id)">
+    <mat-icon color="primary">edit</mat-icon>
+  </button>
+  <button mat-icon-button
+          aria-label="Remove"
+          (click)="deleteTodo(todoItem?.id)">
+    <mat-icon color="warn">clear</mat-icon>
+  </button>
+  <span matLine class="description"
+       [class.done]="todoItem?.done">
+    {{todoItem?.description}}
+  </span>
+  <span *ngIf="todoItem?.done"
+        matLine
+        class="completed-date">
+    Completed on {{todoItem?.done | date}}
+  </span>
+</mat-list-item>

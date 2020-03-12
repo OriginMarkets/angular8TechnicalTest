@@ -1,0 +1,30 @@
+.list-item {
+  &.todo-list-item-done {
+    background-color: lightgrey;
+    .completed-date {
+      margin-top: 6px;
+      font-style: italic;
+      font-size: 10px;
+      color: dimgrey;
+    }
+  }
+  .category {
+    margin-right: 20px;
+  }
+
+  .done {
+    text-decoration: line-through;
+    color: dimgrey;
+  }
+
+  .todo-list-item-done {
+    background-color: lightgrey;
+  }
+
+  .description, .completed-date {
+    margin-left: 26px;
+  }
+
+}
+
+

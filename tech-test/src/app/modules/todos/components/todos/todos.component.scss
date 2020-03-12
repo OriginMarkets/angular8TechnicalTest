@@ -1,0 +1,21 @@
+.todo-container {
+  max-width: 900px;
+  margin: 0 auto;
+  max-height: calc(100% - 300px);
+  overflow: scroll;
+  background-color: white;
+}
+
+.todo-form.todo-add {
+  margin: 0 auto 30px;
+  max-width: 630px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.title {
+ text-align: center;
+  padding: 20px;
+}

@@ -1,0 +1,19 @@
+<mat-list>
+  <ng-container *ngIf="todoItems$ | async | categoryFilter: (categoryFilter$ | async) : (showCompleted$ | async) as filtered">
+    <ng-container *ngFor="let todoItem of filtered">
+      <ng-container *ngIf="(editId$ | async) === todoItem.id; else listEntry">
+        <app-todo-form [editMode]="true"
+                       [initialValues]="todoItem">
+        </app-todo-form>
+      </ng-container>
+      <ng-template #listEntry>
+        <app-todo-item [todoItem]="todoItem"></app-todo-item>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngIf="!filtered.length">
+      No tasks to show
+    </ng-container>
+  </ng-container>
+  <ng-container>
+  </ng-container>
+</mat-list>
