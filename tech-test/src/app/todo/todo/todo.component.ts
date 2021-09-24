@@ -1,5 +1,13 @@
-{
-  "tasks": [
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-todo',
+  templateUrl: './todo.component.html',
+  styleUrls: ['./todo.component.scss']
+})
+export class TodoComponent implements OnInit {
+
+  public todos = [
     {
       "id": 1,
       "label": "Kitchen Cleanup",
@@ -12,7 +20,7 @@
       "label": "Taxes",
       "description": "Start doing my taxes and contact my accountant jhon for advice",
       "category": "bureaucracy",
-      "done": "22-10-2019"
+      "done": false
     },
     {
       "id": "5",
@@ -21,5 +29,10 @@
       "category": "personal",
       "done": true
     }
-  ]
+  ];
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }

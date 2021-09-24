@@ -1,0 +1,40 @@
+.todo-card{
+    margin-top: 24px;
+    background-color: azure;
+    .mat-expansion-panel{
+        .mat-expansion-panel-header-title{
+            line-height: 3;
+            .todo-label{
+                margin-left: 12px;
+                font-style: italic;
+                font-weight: 500;
+                &.todo-done{
+                    text-decoration: line-through;
+                    color:#666666;
+                }
+            }
+            .mat-checkbox{
+                padding-left: 12px;
+            }
+        }
+        .mat-expansion-panel-header-description {
+            justify-content: space-between;
+            align-items: center;
+            .todo-action{
+                .mat-icon{
+                    font-size: 18px;
+                }
+                &.edit{
+                    &:hover{
+                        color: #3f51b5;
+                    }
+                }
+                &.delete{
+                    &:hover{
+                        color: #f44336;
+                    }
+                }
+            }
+        }
+    }
+}
