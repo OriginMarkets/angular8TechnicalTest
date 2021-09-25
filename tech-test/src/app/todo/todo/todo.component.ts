@@ -1,13 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Todo } from 'src/app/models/todo';
 import {TodoService} from '../../services/todo.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent implements OnInit, OnDestroy {
+  getListSub: Subscription;
+  updateSub: Subscription;
+  addSub: Subscription;
+  deleteSub: Subscription;
+  subscriptions: Subscription[] = [];
   public categories = [
     'General',
     'Bureaucracy',
@@ -36,19 +42,21 @@ export class TodoComponent implements OnInit {
     this.fetchTodos();
   }
   fetchTodos() {
-    this.todoService.getAll().subscribe((data) => {
+    this.getListSub = this.todoService.getAll().subscribe((data) => {
       this.todos = data;
     });
+    this.subscriptions.push(this.getListSub);
   }
   onAdd() {
     if(this.newTask.valid) {
       const task:Todo = this.newTask.value;
       task.done = false;
-      this.todoService.add(task).subscribe((data) => {
+      this.addSub = this.todoService.add(task).subscribe((data) => {
         this.fetchTodos();
       });
       this.clearTask();
     }
+    this.subscriptions.push(this.addSub);
   }
   clearTask() {
     this.newTask.setValue({
@@ -58,17 +66,22 @@ export class TodoComponent implements OnInit {
     });
   }
   removeTask(idx, id){
-    this.todoService.delete(id).subscribe((data) => {
+    this.deleteSub = this.todoService.delete(id).subscribe((data) => {
       this.todos.splice(idx,1);
       this.fetchTodos();
     });
+    this.subscriptions.push(this.deleteSub);
   }
   changeStatus(done, id) {
     const data = {
       done
     };
-    this.todoService.update(id, data).subscribe((data) => {
+    this.updateSub = this.todoService.update(id, data).subscribe((data) => {
       this.fetchTodos();
     });
+    this.subscriptions.push(this.updateSub);
+  }
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }
