@@ -1,0 +1,81 @@
+.todo-card{
+    margin-top: 24px;
+    background-color: #f9fcfc;
+    .mat-expansion-panel{
+        padding-bottom: 9px;
+        .mat-expansion-panel-header-title{
+            line-height: 3;
+            .todo-label{
+                margin-left: 12px;
+                font-style: italic;
+                font-weight: 500;
+                &.todo-done{
+                    text-decoration: line-through;
+                    color:#666666;
+                }
+            }
+            .mat-checkbox{
+                padding-left: 12px;
+            }
+        }
+        .mat-expansion-panel-header-description {
+            justify-content: space-between;
+            align-items: center;
+            .todo-action{
+                .mat-icon{
+                    font-size: 18px;
+                }
+                &.edit{
+                    &:hover{
+                        color: #3f51b5;
+                    }
+                }
+                &.delete{
+                    &:hover{
+                        color: #f44336;
+                    }
+                }
+            }
+        }
+    }
+    .task-add-form{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        border: 1px solid #c0c0c0;
+        padding: 6px 12px;
+        border-radius: 4px;
+        &:hover{
+            border-color:#666666;
+        }
+        .mat-form-field{
+            width: 100%;
+            &.mat-form-field-appearance-standard {
+                .mat-form-field-underline{
+                    height: 0px !important;
+                    display: none;
+                }
+            } 
+        }
+    }
+    .button-row{
+        padding: 12px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .mat-flat-button{
+            margin-right: 12px;
+            &:disabled{
+                background-color: #ffb0c8;
+                cursor:not-allowed;
+            }
+        }
+    }
+    .no-task-message{
+        .text{
+            padding: 0px 6px;
+            padding-top: 2px;
+            vertical-align: top;
+        }
+    }
+}

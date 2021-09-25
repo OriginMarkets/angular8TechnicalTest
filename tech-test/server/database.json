@@ -1,18 +1,46 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "label": "Kitchen Cleanup",
-      "description":  "Clean my dirty kitchen",
-      "category": "house",
+      "id": 3,
+      "label": "Bank Appointment",
+      "description": "open bank account",
+      "category": "Personal",
       "done": false
     },
     {
-      "id": 2,
-      "label": "Taxes",
-      "description":  "Start doing my taxes and contact my accountant jhon for advice",
-      "category": "bureaucracy",
-      "done": "22-10-2019"
+      "label": "buy groceries",
+      "description": "go and buy\n",
+      "category": "General",
+      "done": true,
+      "id": 4
+    },
+    {
+      "label": "Gardening",
+      "description": "mow lawn, prune plants",
+      "category": "House",
+      "done": false,
+      "id": 5
+    },
+    {
+      "label": "Pay council tax",
+      "description": "set direct debit",
+      "category": "Bureaucracy",
+      "done": false,
+      "id": 6
+    },
+    {
+      "label": "Stake holder meeting",
+      "description": "11 am at office",
+      "category": "Work",
+      "done": false,
+      "id": 7
     }
+  ],
+  "categories": [
+    "Personal",
+    "House",
+    "Bureaucracy",
+    "Work",
+    "Medical"
   ]
 }

@@ -1,0 +1,86 @@
+<mat-card class="todo-card card-add-todo">
+    <form [formGroup]="newTask" novalidate (ngSubmit)="onAdd()">
+        <div class="task-add-form">
+            <mat-form-field class="task-title" appearance="standard" color="accent">
+                <input matInput placeholder="+ Add task" autocomplete="off" [formControl]="label">
+            </mat-form-field>
+            <mat-form-field color="accent" class="task-desc" appearance="standard">
+                <textarea matInput placeholder="Description" [formControl]="description"></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="button-row">
+            <div>
+                <mat-form-field class="category-selector" appearance="standard" color="accent">
+                    <mat-select name="category" [formControl]="category" [(ngModel)]="selectedCategory" ngDefaultControl>
+                        <mat-option *ngFor="let cat of categories" [value]="cat">
+                            {{cat}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-flat-button color="accent" id="btn-add-task" type="submit" [disabled]="!newTask.valid">Add task</button>
+                <button mat-stroked-button (click)="clearTask()">Cancel</button>
+            </div>
+
+        </div>
+    </form>
+</mat-card>
+<mat-card class="todo-card card-list-todo">
+    <div *ngIf="todos.length">
+        <mat-accordion class="headers-align" multi >
+            <h4>
+                <span matBadge="{{(todos | categoryFilter: 'active').length}}" matBadgeOverlap="false" matBadgeColor="accent">
+                    Active Tasks
+                </span>
+            </h4>
+            <mat-expansion-panel *ngFor="let todo of todos | categoryFilter: typeFilter; let i = index" (opened)="todo.panelState = true"
+                (closed)="todo.panelState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-checkbox class="" (change)="changeStatus(todo.done, todo.id)" name="status" ngDefaultControl [(ngModel)]="todo.done" (click)="$event.stopPropagation();">
+                            <span class="todo-label todo-active"
+                                [ngClass]="todo.done? 'todo-done' : 'todo-active'">{{todo.label}}</span>
+                            <br>
+                            <mat-hint>{{todo.category}}</mat-hint>
+                        </mat-checkbox>
+
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <span [ngStyle]="{'visibility':todo.panelState ? 'hidden' : 'visible' }">
+                            {{todo.description}}
+                        </span>
+                        <span>
+                           
+                            <button title="Remove task" (click)="removeTask(i, todo.id)" (click)="$event.stopPropagation();" mat-icon-button aria-label="Remove"
+                                class="todo-action delete">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>{{todo.description}}</p>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+        <p *ngIf="(todos | categoryFilter: typeFilter).length ==0">
+            <mat-icon aria-hidden="false" aria-label="done all tasks">done_all</mat-icon> 
+            <span class="text"> No tasks</span>
+        </p>
+        <div class="filters">
+            <mat-button-toggle-group [(ngModel)]="typeFilter" ngDefaultControl aria-label="Font Style" name="typeFilter">
+                <mat-button-toggle value="all">All</mat-button-toggle>
+                <mat-button-toggle value="active">Active</mat-button-toggle>
+                <mat-button-toggle value="completed">Completed</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+    </div>
+    <div class="no-task-message" *ngIf="todos.length==0">
+        <p>
+            <mat-icon aria-hidden="false" aria-label="done all tasks">done_all</mat-icon> 
+            <span class="text"> No pending tasks</span>
+        </p>
+    </div>
+</mat-card>
