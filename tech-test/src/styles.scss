@@ -2,3 +2,54 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-form-field-appearance-standard {
+    &.task-title{
+        font-weight: 500;
+        font-size: 16px;
+    }
+    &.task-desc{
+        font-size: 14px;
+    }
+    .mat-form-field-wrapper{
+        padding-bottom: 0px;
+    }
+    .mat-form-field-underline{
+        height: 0px !important;
+        display: none;
+    }
+    .mat-form-field-suffix{
+        right:44px;
+        font-size: 18px;
+    }
+    &.category-selector{
+        line-height: 1;
+        font-size: 14px;
+        .mat-form-field-flex{
+            padding-top: 0px;
+        }
+        .mat-select-value-text{
+            color: #666;
+        }
+    }
+    .mat-form-field-flex{
+        padding-top: 0px !important;
+    }
+}
+.mat-expansion-panel-header{
+    .mat-checkbox-label{
+        padding-top: 14px;
+        line-height: 18px;
+        .mat-hint{
+            font-size: 12px;
+            margin-left: 12px;
+        }
+    }
+}
+.filters{
+    padding: 12px 0px;
+    .mat-button-toggle-label-content {
+        line-height: 2 !important;
+        padding: 0 18px;
+        font-size: 13px;
+    }
+}
